@@ -32,24 +32,24 @@ bool isMine (int row, int col, char board[][MAXSIDE]){
 // A Function to get the user's move
 void makeMove(int *x, int *y){
 	// To take the input move
-	printf("Enter your move, (row, column) -> ");
-	scanf("%d %d", x, y);
+	cout<<"Enter your move, (row, column) -> ";
+	cin >> *x >> *y;
 	return;
 }
 
 // A Function to print the current gameplay board
-void printBoard(char myBoard[][MAXSIDE]){
-	int i, j;
-	printf (" ");
-	for (i=0; i<SIDE; i++)
-		printf (" %d", i);
-	printf ("\n");
-	for (i=0; i<SIDE; i++){
-		printf ("%d ", i);
-		for (j=0; j<SIDE; j++)
-			printf ("%c ", myBoard[i][j]);
-		printf ("\n");
-	}
+void printBoard(char myBoard[][MAXSIDE]) {
+    int i, j;
+    cout << " ";
+    for (i = 0; i < SIDE; i++)
+        cout << " " << i; // Add a space before each number
+    cout << "\n";
+    for (i = 0; i < SIDE; i++) {
+        cout << i;
+        for (j = 0; j < SIDE; j++)
+            cout << " " << myBoard[i][j]; // Add a space before each cell value
+        cout << "\n";
+    }
 	return;
 }
 
@@ -131,7 +131,7 @@ bool playMinesweeperUtil(char myBoard[][MAXSIDE], char realBoard[][MAXSIDE], int
 		for (i=0; i<MINES; i++)
 			myBoard[mines[i][0]][mines[i][1]]='*';
 		printBoard (myBoard);
-		printf ("\nYou lost!\n");
+		cout<<"\n"<<"You lost!"<<"\n";
 		return (true) ;
 	}
 	else{
@@ -260,7 +260,7 @@ void initialise(char realBoard[][MAXSIDE], char myBoard[][MAXSIDE]){
 // A Function to cheat by revealing where the mines are
 // placed.
 void cheatMinesweeper (char realBoard[][MAXSIDE]){
-	printf ("The mines locations are-\n");
+	cout<<"The mines locations are-"<<"\n";
 	printBoard (realBoard);
 	return;
 }
@@ -308,7 +308,7 @@ void playMinesweeper (){
 
 	int currentMoveIndex = 0;
 	while (gameOver == false){
-		printf ("Current Status of Board : \n");
+		cout<<"Current Status of Board : "<<" \n ";
 		printBoard (myBoard);
 		makeMove (&x, &y);
 
@@ -327,7 +327,7 @@ void playMinesweeper (){
 		gameOver = playMinesweeperUtil (myBoard, realBoard, mines, x, y, &movesLeft);
 
 		if ((gameOver == false) && (movesLeft == 0)){
-			printf ("\nYou won !\n");
+			cout<<"\n"<<"You won !"<<"\n";
 			gameOver = true;
 		}
 	}
@@ -345,12 +345,12 @@ void chooseDifficultyLevel (){
 
 	int level;
 
-	printf ("Enter the Difficulty Level\n");
-	printf ("Press 0 for BEGINNER (9 * 9 Cells and 10 Mines)\n");
-	printf ("Press 1 for INTERMEDIATE (16 * 16 Cells and 40 Mines)\n");
-	printf ("Press 2 for ADVANCED (24 * 24 Cells and 99 Mines)\n");
+	cout<<"Enter the Difficulty Level"<<"\n";
+	cout<<"Press 0 for BEGINNER (9 * 9 Cells and 10 Mines)"<<"\n";
+	cout<<"Press 1 for INTERMEDIATE (16 * 16 Cells and 40 Mines"<<"\n";
+	cout<<"Press 2 for ADVANCED (24 * 24 Cells and 99 Mines"<<"\n";
 
-	scanf ("%d", &level);
+	cin >> level;
 
 	if (level == BEGINNER){
 		SIDE = 9;
